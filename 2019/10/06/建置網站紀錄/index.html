@@ -71,20 +71,20 @@
     </h1>
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
         <span class="column is-narrow">
-            <time datetime="2019-10-06T12:40:28.386Z" itemprop="datePublished">10月 6 2019</time>
+            <time datetime="2019-10-06T13:02:07.504Z" itemprop="datePublished">10月 6 2019</time>
         </span>
         
         
         <span class="column is-narrow">
             
             
-            6 分钟 讀完 (約 875 字)
+            6 分钟 讀完 (約 889 字)
         </span>
         
     </div>
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
     
-        <h1 id="架站工具、資料"><a href="#架站工具、資料" class="headerlink" title="架站工具、資料"></a>架站工具、資料</h1><h2 id="架站緣由"><a href="#架站緣由" class="headerlink" title="架站緣由"></a>架站緣由</h2><p>原本想要一個較個人風的 email<br>參照<a href="https://free.com.tw/improvmx/" target="_blank" rel="noopener">網路上</a>得知 Google Domains 不只提供 domain 同時提供指定 email 轉寄的功能<br>就直接照<a href="https://free.com.tw/google-domains/" target="_blank" rel="noopener">這篇</a>來購買一個 domain<br>Google Domain 相較其他網域商，雖然價格貴一點點<br>但每年價格都很一致，不像有些強打第一年優惠但第二年以後價格快翻倍跳<br>最便宜的一年 9 USD，商用字詞的約 12 USD 即可入手 (我是買 12 USD 的)</p>
+        <h1 id="建置網站紀錄"><a href="#建置網站紀錄" class="headerlink" title="建置網站紀錄"></a>建置網站紀錄</h1><h2 id="架站緣由"><a href="#架站緣由" class="headerlink" title="架站緣由"></a>架站緣由</h2><p>原本想要一個較個人風的 email<br>參照 <a href="https://free.com.tw/improvmx/" target="_blank" rel="noopener">網路上</a> 得知 Google Domains 不只提供 domain 同時提供指定 email 轉寄的功能<br>就直接照 <a href="https://free.com.tw/google-domains/" target="_blank" rel="noopener">這篇</a> 來購買一個 domain<br>Google 相較其他網域商，雖然價格貴一點點，但每年價格都很一致<br>不像有些強打第一年優惠但第二年以後價格快翻倍跳反而比 Google 的還貴<br>在這邊最便宜的一年 9 USD，商用字詞的約 1X USD 即可入手 (我是買 12 USD 的)</p>
 <h2 id="設定-Email-轉寄"><a href="#設定-Email-轉寄" class="headerlink" title="設定 Email 轉寄"></a>設定 Email 轉寄</h2><ol>
 <li>購買網域後，進入設定頁 -&gt; 電子郵件</li>
 <li>最下方 “電子郵件轉寄” 填入你想要的別名與轉寄的地址，儲存後就會轉寄了<br><img src="https://i.imgur.com/AfpGIlQ.png" alt></li>
@@ -120,12 +120,16 @@
 <li>185.199.111.153</li>
 </ul>
 <p>再添加一筆 CNAME:<br>name 填 subdomain (例如 “blog”)<br>data 填 “yourname.github.io” (yourname 請改成你的 github ID)</p>
-<p>填完大概長的如下:<br><img src="https://i.imgur.com/0Snd81i.png" alt></p>
-<h3 id="設定-GitHub-Pag-的e-Domain"><a href="#設定-GitHub-Pag-的e-Domain" class="headerlink" title="設定 GitHub Pag 的e Domain"></a>設定 GitHub Pag 的e Domain</h3><ol>
-<li>找到該 Repository -&gt; Settings -&gt; GitHub Pages 區塊</li>
-<li>Custom domain 填入<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">subdomain.domain.com</span><br></pre></td></tr></table></figure></li>
+<p>填完顯示如下:<br><img src="https://i.imgur.com/0Snd81i.png" alt></p>
+<h3 id="設定-GitHub-Page-的-Domain"><a href="#設定-GitHub-Page-的-Domain" class="headerlink" title="設定 GitHub Page 的 Domain"></a>設定 GitHub Page 的 Domain</h3><ol>
+<li><p>在 /blog/source 資料夾建立 CNAME 檔案<br> <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cd /blog/source</span><br><span class="line">$ touch CNAME</span><br></pre></td></tr></table></figure></p>
+</li>
+<li><p>檔案內填寫入<br> <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">subdomain.domain.com</span><br></pre></td></tr></table></figure></p>
+<p> 假設我的 subdomain 是 “blog”<br> 我買的 domain 是 “brchen777.com”<br> 那在這邊要填入的會是 “blog.brchen777.com”</p>
+</li>
+<li><p>假設有填好，進入 GitHub Repository -&gt; Settings -&gt; GitHub Pages 區塊<br> 會有 “Your site is published at XXX” 的訊息，其中 XXX 就是 blog 的網址，顯示如下:<br><img src="https://i.imgur.com/2XtN0xO.png" alt></p>
+</li>
 </ol>
-<p>假設我的 subdomain 是 blog<br>我買的 domain 是 brchen777.com<br>那在這邊要填入的是 blog.brchen777.com，填完大概長的如下:<br><img src="https://i.imgur.com/LuKzjHs.png" alt><br>沒問題的話上方應該會有一個 “Your site is ready to be published at XXX” 的訊息，其中 XXX 就是 blog 的網址</p>
 <h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><ol>
 <li><a href="https://free.com.tw/google-domains/" target="_blank" rel="noopener">在 Google Domains 註冊購買網域名稱教學</a></li>
 <li><a href="https://yaoandy107.github.io/hexo-tutorial/" target="_blank" rel="noopener">Hexo+GitHub，新手也可以快速建立部落格</a></li>
