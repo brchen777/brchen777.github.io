@@ -97,7 +97,7 @@
 <h3 id="建立一個-Repository"><a href="#建立一個-Repository" class="headerlink" title="建立一個 Repository"></a>建立一個 Repository</h3><ol>
 <li>登入 GitHub</li>
 <li>建立 Repository</li>
-<li>name 填入 “yourname.github.io” (yourname 請改成你的 GitHub ID)<br>下方的 type 記得請勾選 “public”<br><img src="https://i.imgur.com/Js1vYeg.png" alt></li>
+<li>name 填入 &quot;yourname.github.io&quot; (yourname 請改成你的 GitHub ID)<br>下方的 type 記得請勾選 “public”<br><img src="https://i.imgur.com/Js1vYeg.png" alt></li>
 </ol>
 <h3 id="安裝-Hexo"><a href="#安裝-Hexo" class="headerlink" title="安裝 Hexo"></a>安裝 Hexo</h3><p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ npm i hexo-cli -g</span><br><span class="line">$ hexo init blog</span><br><span class="line">$ cd blog</span><br><span class="line">$ npm i</span><br></pre></td></tr></table></figure></p>
 <h3 id="安裝-Hexo-Git"><a href="#安裝-Hexo-Git" class="headerlink" title="安裝 Hexo Git"></a>安裝 Hexo Git</h3><p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm i hexo-deployer-git</span><br></pre></td></tr></table></figure></p>
@@ -106,7 +106,7 @@
 <p>最下方 deploy 的部分則改成:<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">    type: git</span><br><span class="line">    repository: http://github.com/yourname/yourname.github.io.git</span><br><span class="line">    branch: master</span><br></pre></td></tr></table></figure></p>
 <p>這裡的 “yourname” 改成你的 github 帳號<br>其他更詳細的設定可參考 <a href="https://hexo.io/docs/configuration" target="_blank" rel="noopener">這裡</a></p>
 <h3 id="開啟-Server"><a href="#開啟-Server" class="headerlink" title="開啟 Server"></a>開啟 Server</h3><p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo s</span><br></pre></td></tr></table></figure></p>
-<p>預設在 <a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a> 看 Local Page (裡面會有一篇 Hello World)<br><img src="https://i.imgur.com/M7kdAQ5.png" alt></p>
+<p>預設在 &quot;<a href="http://localhost:4000\&quot;" target="_blank" rel="noopener">http://localhost:4000\&quot;</a> 看 Local Page (裡面會有一篇 Hello World)<br><img src="https://i.imgur.com/M7kdAQ5.png" alt></p>
 <h3 id="建置靜態網頁"><a href="#建置靜態網頁" class="headerlink" title="建置靜態網頁"></a>建置靜態網頁</h3><p>把 Markdown File 轉成網頁<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g</span><br></pre></td></tr></table></figure></p>
 <h3 id="發佈到-GitHub-Page-上"><a href="#發佈到-GitHub-Page-上" class="headerlink" title="發佈到 GitHub Page 上"></a>發佈到 GitHub Page 上</h3><p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo d</span><br></pre></td></tr></table></figure></p>
 <p>或是你也可以建置、發佈一起做<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo d -g</span><br></pre></td></tr></table></figure></p>
@@ -118,20 +118,20 @@
 <li>185.199.110.153</li>
 <li>185.199.111.153</li>
 </ul>
-<p>再添加一筆 CNAME:<br>name 填 subdomain (例如 “blog”)<br>data 填 “yourname.github.io” (yourname 請改成你的 github ID)</p>
+<p>再添加一筆 CNAME:<br>name 填 subdomain (例如 “blog”)<br>data 填 &quot;yourname.github.io&quot; (yourname 請改成你的 github ID)</p>
 <p>填完顯示如下:<br><img src="https://i.imgur.com/0Snd81i.png" alt></p>
 <h3 id="設定-GitHub-Page-的-Domain"><a href="#設定-GitHub-Page-的-Domain" class="headerlink" title="設定 GitHub Page 的 Domain"></a>設定 GitHub Page 的 Domain</h3><ol>
 <li><p>在 /blog/source 資料夾建立 CNAME 檔案<br> <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cd /blog/source</span><br><span class="line">$ touch CNAME</span><br></pre></td></tr></table></figure></p>
 </li>
 <li><p>檔案內填寫入<br> <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">subdomain.domain.com</span><br></pre></td></tr></table></figure></p>
-<p> 假設我的 subdomain 是 “blog”<br> 我買的 domain 是 “brchen777.com”<br> 那在這邊要填入的會是 “blog.brchen777.com”</p>
+<p> 假設我的 subdomain 是 “blog”<br> 我買的 domain 是 &quot;brchen777.com&quot;<br> 那在這邊要填入的會是 &quot;blog.brchen777.com&quot;</p>
 </li>
 <li><p>假設有填好，進入 GitHub Repository -&gt; Settings -&gt; GitHub Pages 區塊，會有 “Your site is published at XXX” 的訊息，其中 XXX 就是 blog 的網址，顯示如下:<br><img src="https://i.imgur.com/2uIzjq5.png" alt></p>
 </li>
 <li><p>GitHub Page 有內建 HTTPS，網站設定好一段時間之後就有 “Enforce HTTPS” 可選<br>(如上圖的下方)</p>
 </li>
 </ol>
-<h3 id="設定多個-Subdomain-指向同一個-GitHub-Page"><a href="#設定多個-Subdomain-指向同一個-GitHub-Page" class="headerlink" title="設定多個 Subdomain 指向同一個 GitHub Page"></a>設定多個 Subdomain 指向同一個 GitHub Page</h3><p>因為 GitHub Page 不支援多個 CNAME 設定，所以其他的 subdomain 要自行設定轉址<br>到 Google Domains 設定頁 -&gt; DNS -&gt; 綜合記錄<br>假設要把 “www” 這個 subdomain 轉址，新增一筆子網域轉址如下:<br><img src="https://i.imgur.com/3N9h9DN.png" alt><br>以這篇案例來說，”<a href="http://www.brchen777.com&quot;" target="_blank" rel="noopener">www.brchen777.com&quot;</a> 與 “brchen777.github.io” 都會指到 “blog.brchen777.com”</p>
+<h3 id="設定多個-Subdomain-指向同一個-GitHub-Page"><a href="#設定多個-Subdomain-指向同一個-GitHub-Page" class="headerlink" title="設定多個 Subdomain 指向同一個 GitHub Page"></a>設定多個 Subdomain 指向同一個 GitHub Page</h3><p>因為 GitHub Page 不支援多個 CNAME 設定，所以其他的 subdomain 要自行設定轉址<br>到 Google Domains 設定頁 -&gt; DNS -&gt; 綜合記錄<br>假設要把 “www” 這個 subdomain 轉址，新增一筆子網域轉址如下:<br><img src="https://i.imgur.com/3N9h9DN.png" alt><br>以這篇案例來說，&quot;<a href="http://www.brchen777.com\&quot;" target="_blank" rel="noopener">www.brchen777.com\&quot;</a> 與 &quot;brchen777.github.io&quot; 都會指到 &quot;blog.brchen777.com&quot;</p>
 <h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><ol>
 <li><a href="https://free.com.tw/google-domains/" target="_blank" rel="noopener">在 Google Domains 註冊購買網域名稱教學</a></li>
 <li><a href="https://yaoandy107.github.io/hexo-tutorial/" target="_blank" rel="noopener">Hexo+GitHub，新手也可以快速建立部落格</a></li>
