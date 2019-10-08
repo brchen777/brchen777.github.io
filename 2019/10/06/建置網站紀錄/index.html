@@ -78,7 +78,7 @@
         <span class="column is-narrow">
             
             
-            6 分钟 讀完 (約 889 字)
+            7 分钟 讀完 (約 1039 字)
         </span>
         
     </div>
@@ -104,14 +104,13 @@
 <h3 id="安裝-Blog-主題"><a href="#安裝-Blog-主題" class="headerlink" title="安裝 Blog 主題"></a>安裝 Blog 主題</h3><p>這邊我們以安裝 <a href="https://github.com/ppoffice/hexo-theme-minos" target="_blank" rel="noopener">minos</a> 為例子<br>其中 minos 需要 <a href="https://www.npmjs.com/package/hexo-renderer-sass" target="_blank" rel="noopener">hexo-renderer-sass</a> 這個套件<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git clone https://github.com/ppoffice/hexo-theme-minos.git themes/minos</span><br><span class="line">$ npm i hexo-renderer-sass</span><br></pre></td></tr></table></figure></p>
 <h3 id="調整設定"><a href="#調整設定" class="headerlink" title="調整設定"></a>調整設定</h3><p>在 blog 資料夾內可以看到 “_config.yml” 這個設定檔案<br>打開後在中下方有個 theme 的部分改成:<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theme: minos</span><br></pre></td></tr></table></figure></p>
 <p>最下方 deploy 的部分則改成:<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">    type: git</span><br><span class="line">    repository: http://github.com/yourname/yourname.github.io.git</span><br><span class="line">    branch: master</span><br></pre></td></tr></table></figure></p>
-<p>這裡的 “yourname” 改成你的 github 帳號</p>
-<p>其他更詳細的設定可參考<a href="https://hexo.io/docs/configuration" target="_blank" rel="noopener">這裡</a></p>
+<p>這裡的 “yourname” 改成你的 github 帳號<br>其他更詳細的設定可參考 <a href="https://hexo.io/docs/configuration" target="_blank" rel="noopener">這裡</a></p>
 <h3 id="開啟-Server"><a href="#開啟-Server" class="headerlink" title="開啟 Server"></a>開啟 Server</h3><p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo s</span><br></pre></td></tr></table></figure></p>
 <p>預設在 <a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a> 看 Local Page (裡面會有一篇 Hello World)<br><img src="https://i.imgur.com/M7kdAQ5.png" alt></p>
 <h3 id="建置靜態網頁"><a href="#建置靜態網頁" class="headerlink" title="建置靜態網頁"></a>建置靜態網頁</h3><p>把 Markdown File 轉成網頁<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g</span><br></pre></td></tr></table></figure></p>
 <h3 id="發佈到-GitHub-Page-上"><a href="#發佈到-GitHub-Page-上" class="headerlink" title="發佈到 GitHub Page 上"></a>發佈到 GitHub Page 上</h3><p><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo d</span><br></pre></td></tr></table></figure></p>
 <p>或是你也可以建置、發佈一起做<br><figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo d -g</span><br></pre></td></tr></table></figure></p>
-<h2 id="網站轉址"><a href="#網站轉址" class="headerlink" title="網站轉址"></a>網站轉址</h2><p>既然我們已經有 Google Domain 跟 Hexo + GitHub Page 產的 Blog<br>該是串起來的時候了</p>
+<h2 id="網站轉址"><a href="#網站轉址" class="headerlink" title="網站轉址"></a>網站轉址</h2><p>既然我們已經有 Google Domain 跟 Hexo + GitHub Page 產的 Blog，該是串起來的時候了</p>
 <h3 id="設定-DNS"><a href="#設定-DNS" class="headerlink" title="設定 DNS"></a>設定 DNS</h3><p>到 Google Domains 設定頁 -&gt; DNS -&gt; 自訂資源紀錄<br>添加一筆 Type A，IP 如下:</p>
 <ul>
 <li>185.199.108.153</li>
@@ -127,9 +126,12 @@
 <li><p>檔案內填寫入<br> <figure class="highlight plain hljs"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">subdomain.domain.com</span><br></pre></td></tr></table></figure></p>
 <p> 假設我的 subdomain 是 “blog”<br> 我買的 domain 是 “brchen777.com”<br> 那在這邊要填入的會是 “blog.brchen777.com”</p>
 </li>
-<li><p>假設有填好，進入 GitHub Repository -&gt; Settings -&gt; GitHub Pages 區塊<br> 會有 “Your site is published at XXX” 的訊息，其中 XXX 就是 blog 的網址，顯示如下:<br><img src="https://i.imgur.com/2XtN0xO.png" alt></p>
+<li><p>假設有填好，進入 GitHub Repository -&gt; Settings -&gt; GitHub Pages 區塊，會有 “Your site is published at XXX” 的訊息，其中 XXX 就是 blog 的網址，顯示如下:<br><img src="https://i.imgur.com/2uIzjq5.png" alt></p>
+</li>
+<li><p>GitHub Page 有內建 HTTPS，網站設定好一段時間之後就有 “Enforce HTTPS” 可選<br>(如上圖的下方)</p>
 </li>
 </ol>
+<h3 id="設定多個-Subdomain-指向同一個-GitHub-Page"><a href="#設定多個-Subdomain-指向同一個-GitHub-Page" class="headerlink" title="設定多個 Subdomain 指向同一個 GitHub Page"></a>設定多個 Subdomain 指向同一個 GitHub Page</h3><p>因為 GitHub Page 不支援多個 CNAME 設定，所以其他的 subdomain 要自行設定轉址<br>到 Google Domains 設定頁 -&gt; DNS -&gt; 綜合記錄<br>假設要把 “www” 這個 subdomain 轉址，新增一筆子網域轉址如下:<br><img src="https://i.imgur.com/3N9h9DN.png" alt><br>以這篇案例來說，”<a href="http://www.brchen777.com&quot;" target="_blank" rel="noopener">www.brchen777.com&quot;</a> 與 “brchen777.github.io” 都會指到 “blog.brchen777.com”</p>
 <h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><ol>
 <li><a href="https://free.com.tw/google-domains/" target="_blank" rel="noopener">在 Google Domains 註冊購買網域名稱教學</a></li>
 <li><a href="https://yaoandy107.github.io/hexo-tutorial/" target="_blank" rel="noopener">Hexo+GitHub，新手也可以快速建立部落格</a></li>
@@ -137,6 +139,7 @@
 <li><a href="https://ithelp.ithome.com.tw/articles/10207997" target="_blank" rel="noopener">Hexo - 前端也能建置部落格！更換主題與發表文章篇</a></li>
 <li><a href="https://help.github.com/en/articles/configuring-a-custom-domain-for-your-github-pages-site" target="_blank" rel="noopener">Configuring a custom domain for your GitHub Pages site</a></li>
 <li><a href="https://blog.haterain.app/custom-domain-by-google-domain/" target="_blank" rel="noopener">自訂網域名稱：Google Domain</a></li>
+<li><a href="https://help.github.com/en/articles/troubleshooting-custom-domains-and-github-pages" target="_blank" rel="noopener">Troubleshooting custom domains and GitHub Pages</a></li>
 </ol>
 
     
