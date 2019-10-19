@@ -8,7 +8,7 @@ subtitle:
 description:
 keywords: blog
 author: brchen777
-language: zh-tw
+language: zh-TW
 timezone: Asia/Taipei
 
 # URL
@@ -16,7 +16,7 @@ timezone: Asia/Taipei
 url: http://blog.brchen777.com
 root: /
 # permalink: :year/:month/:title/
-permalink: :year/:id/
+permalink: :year/:title/
 permalink_defaults:
 
 # Directory
@@ -74,7 +74,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: minos
+theme: next
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
@@ -84,8 +84,17 @@ deploy:
     branch: master
 
 # Backup
-## Docs https://github.com/coneycode/hexo-git-backup
+## Docs: https://github.com/coneycode/hexo-git-backup
 backup:
     type: git
     repository:
         github: http://github.com/brchen777/brchen777.github.io.git,backup
+
+# hexo-symbols-count-time
+## Docs: https://github.com/theme-next/hexo-symbols-count-time
+symbols_count_time:
+    symbols: true
+    time: true
+    total_symbols: true
+    total_time: true
+    exclude_codeblock: false
