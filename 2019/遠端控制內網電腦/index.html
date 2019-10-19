@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.9.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.1">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.1">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.1" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.1">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.4.1',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '複製',
+      copy_success: '複製成功',
+      copy_failure: '複製失敗'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="緣由有時會有學習或工作用的電腦沒有實體 IP (在內網)，但又需要連線到那台電腦這時可以利用 Reverse SSH Tunneling 機制來連線 所需環境與工具 一台有實體 IP 的伺服器如沒有可購買 VPS，如 Linode，最便宜方案一個月 5 美金 OpenSSHLinux 有內建Windows 10 可從 設定 來啟用 autossh (選用)  範例環境介紹   Machine Ac">
+<meta name="keywords" content="blog">
+<meta property="og:type" content="article">
+<meta property="og:title" content="遠端控制內網電腦">
+<meta property="og:url" content="http://blog.brchen777.com/2019/遠端控制內網電腦/index.html">
+<meta property="og:site_name" content="BRChen home">
+<meta property="og:description" content="緣由有時會有學習或工作用的電腦沒有實體 IP (在內網)，但又需要連線到那台電腦這時可以利用 Reverse SSH Tunneling 機制來連線 所需環境與工具 一台有實體 IP 的伺服器如沒有可購買 VPS，如 Linode，最便宜方案一個月 5 美金 OpenSSHLinux 有內建Windows 10 可從 設定 來啟用 autossh (選用)  範例環境介紹   Machine Ac">
+<meta property="og:locale" content="zh-TW">
+<meta property="og:updated_time" content="2019-10-19T09:29:00.180Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="遠端控制內網電腦">
+<meta name="twitter:description" content="緣由有時會有學習或工作用的電腦沒有實體 IP (在內網)，但又需要連線到那台電腦這時可以利用 Reverse SSH Tunneling 機制來連線 所需環境與工具 一台有實體 IP 的伺服器如沒有可購買 VPS，如 Linode，最便宜方案一個月 5 美金 OpenSSHLinux 有內建Windows 10 可從 設定 來啟用 autossh (選用)  範例環境介紹   Machine Ac">
+  <link rel="canonical" href="http://blog.brchen777.com/2019/遠端控制內網電腦/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>遠端控制內網電腦 | BRChen home</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">BRChen home</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切換導航欄">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首頁</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>歸檔</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="http://blog.brchen777.com/2019/遠端控制內網電腦/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="brchen777">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BRChen home">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          遠端控制內網電腦
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2019-10-19 13:18 / 修改時間：17:29" itemprop="dateCreated datePublished" datetime="2019-10-19T13:18:09+08:00">2019-10-19</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="閱讀次數" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">閱讀次數：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="文章字數">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">文章字數：</span>
+              <span>2.1k</span>
+            </span>
+            <span class="post-meta-item" title="所需閱讀時間">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">所需閱讀時間 &asymp;</span>
+              <span>2 分鐘</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="緣由"><a href="#緣由" class="headerlink" title="緣由"></a>緣由</h3><p>有時會有學習或工作用的電腦沒有實體 IP (在內網)，但又需要連線到那台電腦<br>這時可以利用 Reverse SSH Tunneling 機制來連線</p>
+<h3 id="所需環境與工具"><a href="#所需環境與工具" class="headerlink" title="所需環境與工具"></a>所需環境與工具</h3><ol>
+<li>一台有實體 IP 的伺服器<br>如沒有可購買 VPS，如 <a href="https://www.linode.com/" target="_blank" rel="noopener">Linode</a>，最便宜方案一個月 5 美金</li>
+<li><a href="https://www.openssh.com/" target="_blank" rel="noopener">OpenSSH</a><br>Linux 有內建<br>Windows 10 可從 <a href="https://jcutrer.com/windows/install-openssh-on-windows10" target="_blank" rel="noopener">設定</a> 來啟用</li>
+<li><a href="https://www.harding.motd.ca/autossh/" target="_blank" rel="noopener">autossh</a> (選用)</li>
+</ol>
+<h3 id="範例環境介紹"><a href="#範例環境介紹" class="headerlink" title="範例環境介紹"></a>範例環境介紹</h3><table>
+<thead>
+<tr>
+<th align="center">Machine</th>
+<th align="center">Account</th>
+<th align="center">IP</th>
+<th align="center">Port</th>
+<th align="center">Info</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">ServerA</td>
+<td align="center">userA</td>
+<td align="center">192.168.0.101</td>
+<td align="center">22</td>
+<td align="center">Private IP (內網；目標電腦)</td>
+</tr>
+<tr>
+<td align="center">ServerB</td>
+<td align="center">userB</td>
+<td align="center">149.12.34.56</td>
+<td align="center">1234</td>
+<td align="center">Public IP (外網；中繼電腦)</td>
+</tr>
+<tr>
+<td align="center">Client</td>
+<td align="center">user</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">User (你的電腦)</td>
+</tr>
+</tbody></table>
+<p>你想從 Client 這台電腦連到工作用的電腦 ServerA，預期連線流程大概如下:  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Client -----&gt; ServerB --| 防火牆 |--&gt; ServerA</span><br></pre></td></tr></table></figure>
+
+<p>又因為 ServerA 沒有實體 IP，ServerB 無法直接連到 ServerA<br>可以利用 Reverse SSH Tunneling 機制<br>ServerA 先連到 ServerB 建立隧道:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ServerB &lt;==| 防火牆 |== ServerA</span><br></pre></td></tr></table></figure>
+
+<p>ServerB 再依靠該隧道 port 1234 連到 ServerA:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ServerB ≡≡| 防火牆 |≡≡&gt; ServerA</span><br></pre></td></tr></table></figure>
+
+<h3 id="免密碼登入"><a href="#免密碼登入" class="headerlink" title="免密碼登入"></a>免密碼登入</h3><p>連線時會需要帳密<br>如果想免密碼登入可執行此步驟把 public key 傳給對方</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[userA@ServerA] $ ssh-keygen <span class="comment"># 產一對 key</span></span><br><span class="line">[userA@ServerA] $ ssh-copy-id -i ~/.ssh/id_rsa.pub userB@149.12.34.56   <span class="comment"># 把 public key 送給對方</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="目標電腦設定"><a href="#目標電腦設定" class="headerlink" title="目標電腦設定"></a>目標電腦設定</h3><p>Server A 開一個隧道到 ServerB</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[userA@ServerA] $ ssh -NfR 1234:localhost:22 userB@149.12.34.56    <span class="comment"># f 代表背景執行</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="連到目標電腦"><a href="#連到目標電腦" class="headerlink" title="連到目標電腦"></a>連到目標電腦</h3><h4 id="方法-1"><a href="#方法-1" class="headerlink" title="方法 1"></a>方法 1</h4><p>Client 先連到 ServerB</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[user@Client] $ ssh userB@149.12.34.56</span><br></pre></td></tr></table></figure>
+
+<p>因為前面 ServerA 已經開一個隧道過來<br>所以 ServerB 就能連到 ServerA 了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[userB@ServerB] $ ssh userA@localhost -p 1234</span><br></pre></td></tr></table></figure>
+
+<h4 id="方法-2"><a href="#方法-2" class="headerlink" title="方法 2"></a>方法 2</h4><p>使用一個指令來達成 “先連到 ServerB 再下指令連到 ServerA”</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[user@Client] $ ssh -t userB@149.12.34.56 <span class="string">"ssh userA@localhost -p 1234"</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="方法-3"><a href="#方法-3" class="headerlink" title="方法 3"></a>方法 3</h4><p>直接以 ServerB 當跳板連到 ServerA</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[user@Client] $ ssh -o <span class="string">"ProxyJump userB@149.12.34.56"</span> userA@localhost -p 1234</span><br></pre></td></tr></table></figure>
+
+<p>或是</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[user@Client] $ ssh -J userB@149.12.34.56 userA@localhost -p 1234</span><br></pre></td></tr></table></figure>
+
+<h4 id="方法-4"><a href="#方法-4" class="headerlink" title="方法 4"></a>方法 4</h4><p>原本 ServerB 只能透過 localhost 來連到 ServerA<br>Server A 設定時加上 “-g” 這個 option (允許遠端主機連到本地的轉發 port)<br>讓 Client 透過 ServerB 的 port 直連到 ServerA</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[userA@ServerA] $ ssh -gNfR 0.0.0.0:1234:localhost:22 userB@149.12.34.56</span><br></pre></td></tr></table></figure>
+
+<p>Client 下指令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[user@Client] $ ssh 149.12.34.56 -p 1234</span><br></pre></td></tr></table></figure>
+
+<h3 id="其他相關指令"><a href="#其他相關指令" class="headerlink" title="其他相關指令"></a>其他相關指令</h3><h4 id="查看網路狀態"><a href="#查看網路狀態" class="headerlink" title="查看網路狀態"></a>查看網路狀態</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ netstat -a|less       <span class="comment"># less 代表翻頁檢視</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="登出"><a href="#登出" class="headerlink" title="登出"></a>登出</h4><p>登入後如果想登出可執行以下指令:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="關閉-SSH-Tunnel"><a href="#關閉-SSH-Tunnel" class="headerlink" title="關閉 SSH Tunnel"></a>關閉 SSH Tunnel</h4><p>以下為列出 process 資訊的指令:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ps -ef|grep 1234      <span class="comment"># 列出使用 1234 port 的 process</span></span><br><span class="line">$ ps aux|less           <span class="comment"># 列出正在進行的 process</span></span><br><span class="line">$ ps aux|grep ssh       <span class="comment"># 列出 ssh 相關的 process</span></span><br></pre></td></tr></table></figure>
+
+<p>找到 process id 後就能刪除:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">kill</span> -9 [process id]  <span class="comment"># 刪除指定 process id 的 process</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="斷線時自動重連"><a href="#斷線時自動重連" class="headerlink" title="斷線時自動重連"></a>斷線時自動重連</h3><p>有連線就有可能斷線<br>這時候 serverA 就可以用 autossh 來建立 Reverse SSH Tunneling:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -M 後面是監聽用的 port, 不可跟 localhost 前的 port 一樣, 設 0 代表強制關閉</span></span><br><span class="line">[userA@ServerA] $ autossh -M 0 -o ServerAliveInterval=10 -o ExitOnForwardFailure=yes -NfR 1234:localhost:22 userB@149.12.34.56</span><br></pre></td></tr></table></figure>
+
+<p>或是可使用 <a href="https://www.npmjs.com/package/cmd-boost" target="_blank" rel="noopener">cmd-boost</a> 這個工具</p>
+<p>如果要關閉 autossh:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pkill -3 autossh</span><br></pre></td></tr></table></figure>
+
+<h3 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h3><ol>
+<li><a href="https://easylife.tw/2043" target="_blank" rel="noopener">Reverse SSH Tunnel實際運用，搭配auotssh永不斷線，putty建立反向tunnel</a></li>
+<li><a href="http://blog.codylab.com/cmd-ssh-copy-id/" target="_blank" rel="noopener">實現免密碼 ssh 登入遠端主機</a></li>
+<li><a href="https://blog.urfix.com/25-ssh-commands-tricks/" target="_blank" rel="noopener">25 Best SSH Commands / Tricks</a></li>
+<li><a href="https://www.xiebruce.top/650.html" target="_blank" rel="noopener">ssh通过代理登录远程主机及穿越跳板机</a></li>
+<li><a href="https://www.howtogeek.com/428413/what-is-reverse-ssh-tunneling-and-how-to-use-it/" target="_blank" rel="noopener">What Is Reverse SSH Tunneling? (and How to Use It)</a></li>
+<li><a href="https://www.ssh.com/ssh/command/" target="_blank" rel="noopener">SSH COMMAND</a></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/2019-面試紀錄/" rel="next" title="2019 面試紀錄">
+                  <i class="fa fa-chevron-left"></i> 2019 面試紀錄
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目錄
+        </li>
+        <li class="sidebar-nav-overview">
+          本站概要
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#緣由"><span class="nav-number">1.</span> <span class="nav-text">緣由</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#所需環境與工具"><span class="nav-number">2.</span> <span class="nav-text">所需環境與工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#範例環境介紹"><span class="nav-number">3.</span> <span class="nav-text">範例環境介紹</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#免密碼登入"><span class="nav-number">4.</span> <span class="nav-text">免密碼登入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目標電腦設定"><span class="nav-number">5.</span> <span class="nav-text">目標電腦設定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#連到目標電腦"><span class="nav-number">6.</span> <span class="nav-text">連到目標電腦</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#方法-1"><span class="nav-number">6.1.</span> <span class="nav-text">方法 1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法-2"><span class="nav-number">6.2.</span> <span class="nav-text">方法 2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法-3"><span class="nav-number">6.3.</span> <span class="nav-text">方法 3</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法-4"><span class="nav-number">6.4.</span> <span class="nav-text">方法 4</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他相關指令"><span class="nav-number">7.</span> <span class="nav-text">其他相關指令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#查看網路狀態"><span class="nav-number">7.1.</span> <span class="nav-text">查看網路狀態</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#登出"><span class="nav-number">7.2.</span> <span class="nav-text">登出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#關閉-SSH-Tunnel"><span class="nav-number">7.3.</span> <span class="nav-text">關閉 SSH Tunnel</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#斷線時自動重連"><span class="nav-number">8.</span> <span class="nav-text">斷線時自動重連</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#參考資料"><span class="nav-number">9.</span> <span class="nav-text">參考資料</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="brchen777"
+    src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">brchen777</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">文章</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/brchen777" title="GitHub &rarr; https://github.com/brchen777" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://blog.brchen777.com" title="http://blog.brchen777.com">Home</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">brchen777</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="總字數">7k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="所需總閱讀時間">6 分鐘</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 強力驅動 v3.9.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主題 – <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.4.1
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="訪客總數">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="總瀏覽次數">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/utils.js?v=7.4.1"></script><script src="/js/motion.js?v=7.4.1"></script>
+<script src="/js/schemes/muse.js?v=7.4.1"></script>
+<script src="/js/next-boot.js?v=7.4.1"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
