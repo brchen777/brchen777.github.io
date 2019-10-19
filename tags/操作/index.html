@@ -2,7 +2,7 @@
 <html class="has-navbar-fixed-top">
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-<title>遠端控制內網電腦 - BRChen home</title>
+<title>Tag: 操作 - BRChen home</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.css">
@@ -16,18 +16,14 @@
 
 
 
-    <meta name="description" content="緣由有時會有學習或工作用的電腦沒有實體 IP (在內網)，但又需要連線到那台電腦這時可以利用 Reverse SSH Tunneling 機制來連線 所需環境與工具 一台有實體 IP 的伺服器如沒有可購買 VPS，如 Linode，最便宜方案一個月 5 美金 OpenSSHLinux 有內建Windows 10 可從 設定 來啟用 autossh (選用)  範例環境介紹   Machine Ac">
-<meta name="keywords" content="操作">
-<meta property="og:type" content="article">
-<meta property="og:title" content="遠端控制內網電腦">
-<meta property="og:url" content="http://blog.brchen777.com/2019/遠端控制內網電腦/index.html">
+    <meta name="keywords" content="blog">
+<meta property="og:type" content="website">
+<meta property="og:title" content="BRChen home">
+<meta property="og:url" content="http://blog.brchen777.com/tags/操作/index.html">
 <meta property="og:site_name" content="BRChen home">
-<meta property="og:description" content="緣由有時會有學習或工作用的電腦沒有實體 IP (在內網)，但又需要連線到那台電腦這時可以利用 Reverse SSH Tunneling 機制來連線 所需環境與工具 一台有實體 IP 的伺服器如沒有可購買 VPS，如 Linode，最便宜方案一個月 5 美金 OpenSSHLinux 有內建Windows 10 可從 設定 來啟用 autossh (選用)  範例環境介紹   Machine Ac">
 <meta property="og:locale" content="zh-TW">
-<meta property="og:updated_time" content="2019-10-19T14:19:23.355Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="遠端控制內網電腦">
-<meta name="twitter:description" content="緣由有時會有學習或工作用的電腦沒有實體 IP (在內網)，但又需要連線到那台電腦這時可以利用 Reverse SSH Tunneling 機制來連線 所需環境與工具 一台有實體 IP 的伺服器如沒有可購買 VPS，如 Linode，最便宜方案一個月 5 美金 OpenSSHLinux 有內建Windows 10 可從 設定 來啟用 autossh (選用)  範例環境介紹   Machine Ac">
+<meta name="twitter:title" content="BRChen home">
 
 
 
@@ -113,96 +109,6 @@
             </a>
             
             
-            <div class="navbar-item is-hoverable has-dropdown is-hidden-mobile is-hidden-tablet-only toc">
-                <a class="navbar-item" title="Table of Contents">
-                    <i class="fa fa-list"></i>
-                </a>
-                <div class="navbar-dropdown is-right">
-                    
-                    
-                    
-                    
-                    <a class="navbar-item" href="#緣由">1&nbsp;&nbsp;<b>緣由</b></a>
-                    
-                    
-                    <hr class="navbar-divider">
-                    
-                    
-                    <a class="navbar-item" href="#所需環境與工具">2&nbsp;&nbsp;<b>所需環境與工具</b></a>
-                    
-                    
-                    <hr class="navbar-divider">
-                    
-                    
-                    <a class="navbar-item" href="#範例環境介紹">3&nbsp;&nbsp;<b>範例環境介紹</b></a>
-                    
-                    
-                    <hr class="navbar-divider">
-                    
-                    
-                    <a class="navbar-item" href="#免密碼登入">4&nbsp;&nbsp;<b>免密碼登入</b></a>
-                    
-                    
-                    <hr class="navbar-divider">
-                    
-                    
-                    <a class="navbar-item" href="#目標電腦設定">5&nbsp;&nbsp;<b>目標電腦設定</b></a>
-                    
-                    
-                    <hr class="navbar-divider">
-                    
-                    
-                    <a class="navbar-item" href="#連到目標電腦">6&nbsp;&nbsp;<b>連到目標電腦</b></a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#方法-1">6.1&nbsp;&nbsp;方法 1</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#方法-2">6.2&nbsp;&nbsp;方法 2</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#方法-3">6.3&nbsp;&nbsp;方法 3</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#方法-4">6.4&nbsp;&nbsp;方法 4</a>
-                    
-                    
-                    <hr class="navbar-divider">
-                    
-                    
-                    <a class="navbar-item" href="#其他相關指令">7&nbsp;&nbsp;<b>其他相關指令</b></a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#查看網路狀態">7.1&nbsp;&nbsp;查看網路狀態</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#登出">7.2&nbsp;&nbsp;登出</a>
-                    
-                    
-                    
-                    <a class="navbar-item" href="#關閉-SSH-Tunnel">7.3&nbsp;&nbsp;關閉 SSH Tunnel</a>
-                    
-                    
-                    <hr class="navbar-divider">
-                    
-                    
-                    <a class="navbar-item" href="#斷線時自動重連">8&nbsp;&nbsp;<b>斷線時自動重連</b></a>
-                    
-                    
-                    <hr class="navbar-divider">
-                    
-                    
-                    <a class="navbar-item" href="#參考資料">9&nbsp;&nbsp;<b>參考資料</b></a>
-                    
-                </div>
-            </div>
-            
             
             <a class="navbar-item" title="GitHub" href="https://github.com/brchen777">
                 
@@ -215,12 +121,20 @@
     </div>
 </nav>
 
-    <section class="section">
+    <section class="section section-heading">
     <div class="container">
-    <article class="article content gallery" itemscope itemprop="blogPost">
+        <div class="content">
+            <h5>#操作</h5>
+        </div>
+    </div>
+</section>
+<section class="section">
+    <div class="container">
+    
+        <article class="article content gallery" itemscope itemprop="blogPost">
     <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
         
-            遠端控制內網電腦
+            <a href="/2019/遠端控制內網電腦/" itemprop="url">遠端控制內網電腦</a>
         
     </h1>
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
@@ -329,49 +243,14 @@
     
     </div>
     
-    <div class="columns is-variable is-1 is-multiline is-mobile">
-    
-        <span class="column is-narrow"><a class="tag is-light article-tag" href="/tags/操作/">#操作</a></span>
-    
-    </div>
-    
-    
-    <div class="columns is-mobile is-multiline article-nav">
-        <span class="column is-12-mobile is-half-desktop is-hidden-mobile article-nav-prev">
-            
-        </span>
-        <span class="column is-12-mobile is-half-desktop  article-nav-next">
-            
-            <a href="/2019/2019-面試紀錄/">2019 面試紀錄</a>
-            
-        </span>
-    </div>
     
 </article>
 
 
-<div class="sharebox">
+
+
     
-<div class="sharethis-inline-share-buttons"></div>
-<script type="text/javascript" src="https://platform-api.sharethis.com/js/sharethis.js#property=5dab1ff2e555f90019b087e7" async="async"></script>
-
-</div>
-
-
-
-<div class="comments">
-    <h3 class="title is-4">Comments</h3>
     
-<div id="disqus_thread">
-    
-    <div class="notification is-danger">
-        You forgot to set the <code>shortname</code> for Disqus. Please set it in <code>_config.yml</code>.
-    </div>
-    
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</div>
-</div>
-
     </div>
 </section>
     <footer class="footer">
