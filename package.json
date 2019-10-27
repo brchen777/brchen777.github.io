@@ -4,7 +4,7 @@
     "private": true,
     "scripts": {
         "upgrade": "npm-upgrade",
-        "add_post": "hexo new",
+        "new_post": "hexo new",
         "local": "hexo clean && hexo s -p 1234",
         "deploy": "hexo d -g & hexo b"
     },
