@@ -100,3 +100,7 @@ symbols_count_time:
     exclude_codeblock: false
     awl: 2
     wpm: 300
+
+# hexo-yam
+## Docs: https://github.com/curbengh/hexo-yam
+minify: # default enable
