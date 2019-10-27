@@ -81,19 +81,4 @@
             $(this).text(moment($(this).attr("datetime")).fromNow());
         });
     }
-
-    // Firebase JS Code start
-    var firebaseConfig = {
-        apiKey: "AIzaSyBWGDv6N1SHujN7h3DWEeNBJwsHwM2xwN4",
-        authDomain: "blog-brchen777.firebaseapp.com",
-        databaseURL: "https://blog-brchen777.firebaseio.com",
-        projectId: "blog-brchen777",
-        storageBucket: "blog-brchen777.appspot.com",
-        messagingSenderId: "988913757048",
-        appId: "1:988913757048:web:86a715915d99572b67f68d",
-        measurementId: "G-VDSS2BTSZ8"
-    };
-    firebase.initializeApp(firebaseConfig);
-    firebase.analytics();
-    // Firebase JS Code End
 })(jQuery);
