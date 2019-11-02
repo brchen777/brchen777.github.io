@@ -21,12 +21,13 @@ tags: [Plugin, 練習]
 
 ### 申請 reCaptcha key
 
+這裡以 v2 checkbox 為例
 先到 [這裏](https://www.google.com/recaptcha/admin/create) 申請
 介面如下：
 ![](./reCaptcha-練習/register1.png)
 
 標籤填名稱
-類型勾選 v2 ([目前 ios 好像只支援到 v2](https://github.com/fjcaetano/ReCaptcha#warning-%EF%B8%8F))
+類型勾選 "v2" -> "我不是機器人核取方塊" ([目前 ios 好像只支援到 v2](https://github.com/fjcaetano/ReCaptcha#warning-%EF%B8%8F))
 網域填寫網址或是 app 的 package name，如果是本地端測試也要填個 ```localhost``` 與 ```127.0.0.1```
 
 ### 複製 key
@@ -37,7 +38,7 @@ tags: [Plugin, 練習]
 
 ### v2 前端範例
 
-這裡以 v2 checkbox 的網站金鑰 =  ```6Lc3scAUAAAAAKtFexJH_-IBcgXj94IEyEORgLnm``` 為例
+以金鑰 = ```6Lc3scAUAAAAAKtFexJH_-IBcgXj94IEyEORgLnm``` 為例
 
 #### client.html 範例
 
