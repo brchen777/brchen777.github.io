@@ -101,17 +101,6 @@ backup:
     repository:
         github: http://github.com/brchen777/brchen777.github.io.git,backup
 
-# hexo-symbols-count-time
-## Docs: https://github.com/theme-next/hexo-symbols-count-time
-symbols_count_time:
-    symbols: true
-    time: true
-    total_symbols: true
-    total_time: true
-    exclude_codeblock: false
-    awl: 2
-    wpm: 300
-
 # hexo-yam
 ## Docs: https://github.com/curbengh/hexo-yam
 minify: # default enable
