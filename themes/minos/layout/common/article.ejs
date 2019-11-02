@@ -1,15 +1,14 @@
 <article class="article content gallery" itemscope itemprop="blogPost">
     <h1 class="article-title is-size-3 is-size-4-mobile" itemprop="name">
         <% if (index) { %>
-        <a href="<%- url_for(post.link ? post.link : post.path) %>" itemprop="url"><%= post.title %></a>
+            <a href="<%- url_for(post.link ? post.link : post.path) %>" itemprop="url"><%= post.title %></a>
         <% } else { %>
-        <%= post.title %>
+            <%= post.title %>
         <% } %>
     </h1>
     <div class="article-meta columns is-variable is-1 is-multiline is-mobile is-size-7-mobile">
         <span class="column is-narrow">
-            <time datetime="<%= date_xml(post.date) %>"
-                itemprop="datePublished"><%= format_date_full(post.date) %></time>
+            <time datetime="<%= date_xml(post.date) %>" itemprop="datePublished"><%= format_date_full(post.date) %></time>
         </span>
         <% if (post.categories && post.categories.length){ %>
         <span class="column is-narrow article-category">
@@ -26,28 +25,22 @@
             <%= `${ time.humanize() } ${ __('article.read')} (${ __('article.about') } ${ words } ${ __('article.words') })` %>
         </span>
         <% } %>
-
-        <!-- Firebase Visitors tag start -->
-        <span class="column is-narrow" id="visits">Visits: <font class="count">--<font></span>
-        <span class="column is-narrow" id="pageviews">Pageviews: <font class="count">--<font></span>
-        <!-- Firebase Visitors tag end -->
     </div>
     <div class="article-entry is-size-6-mobile" itemprop="articleBody">
-        <% if (post.excerpt && index){ %>
+    <% if (post.excerpt && index){ %>
         <%- post.excerpt %>
         <p class="article-more-link">
             <a href="<%- url_for(post.path) %>#more"><%= __('article.read_more') %></a>
         </p>
-        <% } else { %>
+    <% } else { %>
         <%- post.content %>
-        <% } %>
+    <% } %>
     </div>
     <% if (!index && post.tags && post.tags.length){ %>
     <div class="columns is-variable is-1 is-multiline is-mobile">
-        <% (post._tags || post.tags).forEach(tag => { %>
-        <span class="column is-narrow"><a class="tag is-light article-tag"
-                href="<%- url_for(tag.path) %>">#<%= tag.name %></a></span>
-        <% }) %>
+    <% (post._tags || post.tags).forEach(tag => { %>
+        <span class="column is-narrow"><a class="tag is-light article-tag" href="<%- url_for(tag.path) %>">#<%= tag.name %></a></span>
+    <% }) %>
     </div>
     <% } %>
     <% if (!index && (post.prev || post.next)) { %>

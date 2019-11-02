@@ -4,8 +4,7 @@
 <!-- test if the browser is outdated -->
 <div id="outdated">
     <h6>Your browser is out-of-date!</h6>
-    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser"
-            href="http://outdatedbrowser.com/">Update my browser now </a></p>
+    <p>Update your browser to view this website correctly. <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/">Update my browser now </a></p>
     <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
 </div>
 <script src="//cdnjs.cloudflare.com/ajax/libs/outdated-browser/1.1.5/outdatedbrowser.min.js"></script>
@@ -27,16 +26,10 @@
     moment.locale("<%= momentjs_locale() %>");
 </script>
 
-<!-- Firebase Script tag start -->
-<script src="/js/firebase/7.2.2/firebase-app.js"></script>
-<script src="/js/firebase/7.2.2/firebase-database.js"></script>
-<script src="/js/visitor-counter.js"></script>
-<!-- Firebase Script tag end -->
-
 <% if (has_config('plugins')) { %>
-<% for (let plugin in get_config('plugins')) { %>
-<%- partial('plugins/' + plugin, {head: false}) %>
-<% } %>
+    <% for (let plugin in get_config('plugins')) { %>
+    <%- partial('plugins/' + plugin, {head: false}) %>
+    <% } %>
 <% } %>
 
 <%- js('js/script') %>
