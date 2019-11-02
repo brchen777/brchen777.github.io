@@ -148,7 +148,7 @@ app.listen(7777);
 
 ### 成品畫面
 
-如有設定成功的話會如以下畫面:
+如有設定成功的話會如以下畫面：
 ![](./reCaptcha-練習/result.png)
 備註：如果 "我不是機器人" 區塊沒出來的話可去 [控制台](https://www.google.com/recaptcha/admin/site) 那邊有沒有把網域加進去
 
