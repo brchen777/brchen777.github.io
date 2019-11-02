@@ -12,6 +12,7 @@ tags: [Plugin, 練習]
 ## 版本
 
 1. v3：分數驗證 (Google 會回覆 0~1 之間的分數)
+
 2. v2：問題驗證 (要回答 Google 問的圖形之類的問題)
     (1) checkbox：勾選 "我不是機器人" 來驗證要求
     (2) invisible：藏在背景，有疑慮才需驗證
@@ -41,9 +42,12 @@ tags: [Plugin, 練習]
 #### client.html 範例
 
 在這邊模擬一個登入畫面
-(1) 第 14 行；html 內放一個 hidden tag ```recaptcha-token``` 來存 token
-(2) 第 17 行；html 內放一個 div tag ```recaptcha``` 來放 checkbox
-(3) 第 19 ~ 20 行；底下再 load ```https://www.google.com/recaptcha/api.js``` 與 ```./recaptcha.js```
+
+1. 第 14 行；html 內放一個 hidden tag ```recaptcha-token``` 來存 token
+
+2. 第 17 行；html 內放一個 div tag ```recaptcha``` 來放 checkbox
+
+3. 第 19 ~ 20 行；底下再 load ```https://www.google.com/recaptcha/api.js``` 與 ```./recaptcha.js```
 
 ```html
 <!DOCTYPE html>
@@ -73,9 +77,11 @@ tags: [Plugin, 練習]
 
 #### recaptcha.js 範例
 
-(1) 第 9 ~ 13 行；recaptcha 功能綁定到 ```recaptcha``` div 上
-(2) 第 16 ~ 18 行；render 的 callback 把拿到的 token 存回 ```recaptcha-token``` 內
-(3) 之後就能利用 form post 把 account、password、token 一起傳給後端
+1. 第 9 ~ 13 行；recaptcha 功能綁定到 ```recaptcha``` div 上
+
+2. 第 16 ~ 18 行；render 的 callback 把拿到的 token 存回 ```recaptcha-token``` 內
+
+3. 之後就能利用 form post 把 account、password、token 一起傳給後端
 
 ```javascript
 const myForm = document.getElementById("myForm");
@@ -103,10 +109,14 @@ function updateToken(token) {
 這邊使用 [express](https://expressjs.com/) 來開一個後端 Server，[axios](https://github.com/axios/axios) 來發 request
 要特別注意的是 [siteverify API](https://developers.google.com/recaptcha/docs/verify#api_request) 雖然 method 是 POST
 但只能用 [querystring](https://nodejs.org/api/querystring.html) 來傳遞額外參數
-(1) 第 12 行；接收 token 等參數
-(2) 第 18 行；把 ```__your_secret__``` 替換成申請的密鑰
-(3) 第 15 ~ 21 行；把 secret、token 當參數 request siteverify API
-(4) 第 22 ~ 31 行；收到 siteverify API 的 Response，如果 success 是 true，代表驗證成功，第 24 行以後可作後續的 login 行為
+
+1. 第 12 行；接收 token 等參數
+
+2. 第 18 行；把 ```__your_secret__``` 替換成申請的密鑰
+
+3. 第 15 ~ 21 行；把 secret、token 當參數 request siteverify API
+
+4. 第 22 ~ 31 行；收到 siteverify API 的 Response，如果 success 是 true，代表驗證成功，第 24 行以後可作後續的 login 行為
 
 ```javascript
 const axios = require("axios");
