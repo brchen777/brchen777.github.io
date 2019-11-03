@@ -104,3 +104,9 @@ backup:
 # hexo-yam
 ## Docs: https://github.com/curbengh/hexo-yam
 minify: # default enable
+
+visitor-counter:
+    firebase-version: 7.2.3
+    apiKey: "AIzaSyBWGDv6N1SHujN7h3DWEeNBJwsHwM2xwN4"
+    authDomain: "blog-brchen777.firebaseapp.com"
+    databaseURL: "https://blog-brchen777.firebaseio.com"
