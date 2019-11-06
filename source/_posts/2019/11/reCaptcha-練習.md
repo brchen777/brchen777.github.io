@@ -17,6 +17,8 @@ tags: [Plugin, 練習]
     (1) checkbox：勾選 "我不是機器人" 來驗證要求
     (2) invisible：藏在背景，有疑慮才需驗證
 
+備註：[目前 ios 只支援 v2 invisible](https://github.com/fjcaetano/ReCaptcha#warning-%EF%B8%8F)
+
 ## 步驟
 
 ### 申請 reCaptcha key
@@ -27,7 +29,7 @@ tags: [Plugin, 練習]
 ![](./reCaptcha-練習/register1.png)
 
 標籤填名稱
-類型勾選 "v2" -> "我不是機器人核取方塊" ([目前 ios 好像只支援到 v2](https://github.com/fjcaetano/ReCaptcha#warning-%EF%B8%8F))
+類型勾選 "v2" -> "我不是機器人核取方塊"
 網域填寫網址或是 app 的 package name，如果是本地端測試也要填個 ```localhost``` 與 ```127.0.0.1```
 
 ### 複製 key
@@ -36,7 +38,7 @@ tags: [Plugin, 練習]
 密鑰 (secret) 則是後端用 (請保存好，小心外洩)
 ![](./reCaptcha-練習/register2.png)
 
-### v2 前端範例
+### 前端範例
 
 以金鑰 = ```6Lc3scAUAAAAAKtFexJH_-IBcgXj94IEyEORgLnm``` 為例
 
@@ -105,7 +107,15 @@ function updateToken(token) {
 }
 ```
 
-### v2 後端範例
+### Android 範例
+
+請參考 [這裏](https://developer.android.com/training/safetynet/recaptcha.html)
+
+### iOS 範例
+
+請參考 [這裏](https://github.com/fjcaetano/ReCaptcha)
+
+### 後端範例
 
 這邊使用 [express](https://expressjs.com/) 來開一個後端 Server，[axios](https://github.com/axios/axios) 來發 request
 要特別注意的是 [siteverify API](https://developers.google.com/recaptcha/docs/verify#api_request) 雖然 method 是 POST
@@ -161,13 +171,19 @@ app.listen(7777);
 
 如有設定成功的話會如以下畫面：
 ![](./reCaptcha-練習/result.png)
-備註：如果 "我不是機器人" 區塊沒出來的話可去 [控制台](https://www.google.com/recaptcha/admin/site) 那邊有沒有把網域加進去
+備註：如果 "我不是機器人" 區塊沒出來的話可去 [控制台](https://www.google.com/recaptcha/admin/site) 確認有沒有把網域加進去
+
+### Error Code
+
+如果 response 內的 success === false 時
+```error-codes``` 會有錯誤訊息的 code
+詳細可參考 [這裡](https://developers.google.com/recaptcha/docs/verify#error_code_reference)
 
 ## 資料來源
 
 1. [Developer's Guide](https://developers.google.com/recaptcha/intro)
 2. [reCAPTCHA v2 Invisible，不用再把「我不是機器人」列入頁面設計考量](https://medium.com/@z3388638/recaptcha-v2-invisible-%E4%B8%8D%E7%94%A8%E5%86%8D%E6%8A%8A-%E6%88%91%E4%B8%8D%E6%98%AF%E6%A9%9F%E5%99%A8%E4%BA%BA-%E5%88%97%E5%85%A5%E9%A0%81%E9%9D%A2%E8%A8%AD%E8%A8%88%E8%80%83%E9%87%8F-2b83dbce03cb)
 3. [reCaptcha Form with an Amazon AWS™ serverless backend environment](https://medium.com/aws-factory/recaptcha-form-with-an-amazon-aws-serverless-backend-environment-809cdb788424)
-4. [How to Setup a Serverless Contact Form with AWS Lambda, reCAPTCHA and Storyblok ](https://www.storyblok.com/tp/serverless-contact-form-setup)
+4. [How to Setup a Serverless Contact Form with AWS Lambda, reCAPTCHA and Storyblok](https://www.storyblok.com/tp/serverless-contact-form-setup)
 5. [簡介:給人類方便給bot困難](https://easonwang01.gitbooks.io/web_advance/google_speech_api/google-recaptcha.html)
 6. [如何整合“No CAPTCHA reCAPTCHA”（驗證碼）到你的網站裡](https://webdesign.tutsplus.com/zh-hant/tutorials/how-to-integrate-no-captcha-recaptcha-in-your-website--cms-23024)
