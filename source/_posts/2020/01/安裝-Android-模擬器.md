@@ -1,8 +1,8 @@
 ---
 title: 安裝 Android 模擬器
 date: 2020-01-12 15:43:58
-categories:
-tags:
+categories: Android
+tags: [環境設置, App, Android, 模擬器]
 ---
 
 ## 前言
@@ -62,7 +62,7 @@ tags:
 
 1. 在 VSCode 內 -> 按下 ```Ctrl + Shift P``` -> 輸入 "Flutter: Launch Emulator" -> 選擇 "Create Android emulator"
 
-2. 等待一很長一段時間完會出現一個模擬器
+2. 等很長一段時間完會出現一個模擬器
 ![](./安裝-Android-模擬器/emulator_android.png)
 
 3. 就能利用此模擬器來 Debug 了

@@ -1,8 +1,8 @@
 ---
 title: 用 Flutter 寫 Android APP
 date: 2019-12-29 18:00:53
-categories:
-tags:
+categories: App
+tags: [Flutter, 環境設置, App]
 ---
 
 ## 所需環境與工具
