@@ -49,11 +49,11 @@ tags:
 以下以 28 版當例子：
 
     ```bash
-    $ sdkmanager "platform-tools" "platforms;android-28" "build-tools;28.0.3"
+    $ sdkmanager --install "platform-tools" "platforms;android-28" "build-tools;28.0.3"
     ```
 
 4. 加上環境變數 ANDROID_HOME
-假如資料夾路徑為 ```C:\src\androidSDK```
+假如資料夾路徑為 ```C:\src\androidSDK```  
 本機 -> 右鍵 -> 內容 -> 進階系統設定 -> 進階 -> 環境變數 -> 系統變數 -> 新增 -> 把 ```C:\src\androidSDK``` 加上去
 ![](./用-Flutter-寫-Android-APP/env_variable2.png)
 
@@ -82,7 +82,6 @@ tags:
 
 出現以下畫面就算成功：
 ![](./用-Flutter-寫-Android-APP/flutter_doctor.png)
-
 
 ## 資料來源
 
