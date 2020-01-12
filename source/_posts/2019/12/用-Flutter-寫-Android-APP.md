@@ -80,7 +80,7 @@ tags: [Flutter, 環境設置, App]
     $ flutter doctor
     ```
 
-出現以下畫面就算成功：
+出現類似以下畫面就算成功 (Android Studio 可以不裝)：
 ![](./用-Flutter-寫-Android-APP/flutter_doctor.png)
 
 ## 資料來源
